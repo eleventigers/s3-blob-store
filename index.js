@@ -86,8 +86,8 @@ S3BlobStore.prototype.remove = function(opts, done) {
 
 S3BlobStore.prototype.exists = function(opts, done) {
   this.s3.headObject({ Bucket: this.bucket, Key: opts.key }, function(err, res){
-    if (err && err.statusCode === 404) return done(null, false);
-    done(err, !err)
+    if (err && err.statusCode === 404) return done(null, false, res);
+    done(err, !err, res)
   });
 }
 
